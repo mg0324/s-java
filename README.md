@@ -91,7 +91,7 @@
                         },
                         {
                             moduleName: 'Java核心',
-                            parts:['Java基础','Java Web','Java IO','Java高并发@1@java/juc','Java虚拟机@1@java/jvm']
+                            parts:['Java基础','Java Web','Java IO','Java高并发@1@s-java/java/juc','Java虚拟机@1@s-java/java/jvm']
                         }
                     ]
                 };
