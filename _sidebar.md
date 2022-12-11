@@ -1,4 +1,4 @@
-- [主页](./README.md)
+- [主页](README.md)
 - Java
     - [Java高并发](java/juc.md)
     - [Java虚拟机](java/jvm.md)
