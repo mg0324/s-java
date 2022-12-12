@@ -71,7 +71,7 @@
                     nodes: [
                         {
                             moduleName: '微服务',
-                            parts:['Spring Cloud','Dubble']
+                            parts:['Spring Cloud','Dubbo(java)']
                         },
                         {
                             moduleName: '源码阅读',
@@ -91,7 +91,7 @@
                         },
                         {
                             moduleName: 'Java核心',
-                            parts:['Java基础','Java Web','Java IO','Java高并发@1@s-java/java/juc','Java虚拟机@1@s-java/java/jvm']
+                            parts:['Java基础@2@s-java/java/base','Java Web@2@s-java/java/web','Java IO','Java高并发@1@s-java/java/juc','Java虚拟机@1@s-java/java/jvm']
                         }
                     ]
                 };
