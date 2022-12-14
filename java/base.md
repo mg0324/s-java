@@ -294,8 +294,44 @@ Map<String,Object> mps = new HashMap<String,Object>(5){{
 mps.forEach((k,v)-> System.out.println(k.concat(":").concat(String.valueOf(v))));
 ```
 
-* 条件
-* 多分支
+### 条件和多分支
+#### if、else if和else
+通过`if`、`else if`和`else`来做条件控制。
+``` java
+public static void main(String[] args) {
+    int grade = 90;
+    if(grade >= 90){
+        System.out.println("优");
+    }else if(grade >= 80 && grade < 90){
+        System.out.println("良");
+    }else if(grade >= 60 && grade < 80){
+        System.out.println("及格");
+    }else {
+        System.out.println("不及格");
+    }   
+}
+```
+#### switch case 
+如下程序，通过对`sex`变量的值，转换为性别的含义。
+``` java
+String sex = "0";
+String sexStr = "";
+switch(sex){
+    case "0":
+        sexStr = "未知";
+        break;
+    case "1":
+        sexStr = "男";
+        break;
+    case "2":
+        sexStr = "女";
+        break;
+    default:
+        sexStr = "未知";
+        break;
+}
+System.out.println(sexStr);
+```
 
 ### Java关键字
 <table class="reference">
