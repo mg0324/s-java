@@ -333,6 +333,67 @@ switch(sex){
 System.out.println(sexStr);
 ```
 
+### 实践：猜字游戏
+* 程序随机生成一个0到100之间的数
+* 用户通过控制台输入猜数
+* 程序给出结果是大啦、小啦还是猜中
+
+``` java 
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * 猜字游戏
+ */
+public class GuessNumber {
+    public static void main(String[] args) {
+        // 生成结果数
+        int resultNumber = new Random().nextInt(100);
+        Scanner scanner = new Scanner(System.in);
+        boolean over = false;
+        while(!over){
+            System.out.print("请输入一个数字：");
+            String input = scanner.nextLine();
+            try{
+                int guess = Integer.parseInt(input.trim());
+                if(guess == resultNumber){
+                    // 猜中
+                    over = true;
+                }else if(guess < resultNumber){
+                    System.out.println("对不起，您猜的数字小啦！");
+                }else{
+                    System.out.println("对不起，您猜的数字大啦！");
+                }
+            }catch(NumberFormatException e){
+                System.out.println("只能输入数字！");
+                continue;
+            }
+        }
+        System.out.println("恭喜您，猜中了！");
+        scanner.close();
+    }
+}
+```
+运行结果：
+``` 
+请输入一个数字：s
+只能输入数字！
+请输入一个数字：1
+对不起，您猜的数字小啦！
+请输入一个数字：4
+对不起，您猜的数字小啦！
+请输入一个数字：54
+对不起，您猜的数字小啦！
+请输入一个数字：66
+对不起，您猜的数字大啦！
+请输入一个数字：55
+对不起，您猜的数字小啦！
+请输入一个数字：60
+对不起，您猜的数字大啦！
+请输入一个数字：58
+恭喜您，猜中了！
+```
+
 ### Java关键字
 <table class="reference">
 <tbody><tr>
@@ -550,13 +611,158 @@ System.out.println(sexStr);
 </tbody>
 </table>
 
-## 面向对象
-* 类 (类是一类事物的抽象描述，可以理解为模板；对象是)
-* 对象
-* 继承
-* 多态
-* 重载
-* 重写
+## 面向对象编程
+### 引言
+在面向对象编程(oop)思想出现之前，程序都是基于面向过程编程的思想来编写的。
+
+如上面猜数字的小游戏，就是将猜数的过程按步骤划分并实现即可；面向过程思路清晰，但是无法适应大型复杂的工程建设，所以结合现实社会特点，出现了面向对象编程的思想。
+
+### 类和对象
+> Java为实现面试对象编程，提供了`class`和`new`的关键字来实现，其他的语言类似。
+* 类：类是一个模板，它描述一类对象的行为和状态，通过关键字`class`定义。
+* 对象：对象是类的一个实例（对象不是找个女朋友），有状态和行为。例如，一个玩家是一个对象，它的状态有：名字；行为有：玩游戏等。通过`new {class}`来通过类模板实例化得到一个对象实例。
+
+### 猜数字游戏oop化
+![](../static/java/base/oop-gn.drawio.svg)
+
+将猜字游戏分为2个类，一个游戏Game类和一个玩家Player类。这样可以多个玩家玩同一个游戏，也可以一个玩家玩多个游戏，使得代码复用性大大提升。
+而原来的过程版猜字游戏，只能体验这一过程，退出后需要重新运行过程。
+
+<!-- tabs:start -->
+##### **Main主方法**
+``` java
+public class Main {
+    public static void main(String[] args) {
+        Game game = new Game();
+        Player xm = new Player("小明");
+        Player xh = new Player("小红");
+        Player xg = new Player("小刚");
+        xm.play(game);
+        xh.play(game);
+        xg.play(game);
+        game.exit();
+    }
+}
+```
+运行示例：
+```
+[小明]请输入一个数字：33
+对不起，[小明]您猜的数字小啦！
+[小明]请输入一个数字：44
+对不起，[小明]您猜的数字小啦！
+[小明]请输入一个数字：66
+对不起，[小明]您猜的数字小啦！
+[小明]请输入一个数字：77
+对不起，[小明]您猜的数字大啦！
+[小明]请输入一个数字：68
+对不起，[小明]您猜的数字小啦！
+[小明]请输入一个数字：70
+对不起，[小明]您猜的数字小啦！
+[小明]请输入一个数字：75
+恭喜您[小明]，猜中了！
+[小红]请输入一个数字：75
+恭喜您[小红]，猜中了！
+[小刚]请输入一个数字：75
+恭喜您[小刚]，猜中了！
+游戏退出！
+```
+##### **Game类**
+``` java
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * 游戏类
+ */
+public class Game {
+    private int result;
+    private Scanner scanner;
+
+    public Game(){
+        // 初始化随机结果数
+        this.result = new Random().nextInt(100);
+        this.scanner = new Scanner(System.in);
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public Scanner getScanner(){
+        return scanner;
+    }
+    /**
+     * 退出游戏
+     */
+    public void exit(){
+        this.scanner.close();
+        System.out.println("游戏退出！");
+    }
+
+}
+```
+##### **Player类**
+``` java
+import java.util.Scanner;
+
+/**
+ * 玩家类
+ */
+public class Player {
+    private String name;
+
+    public Player(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    /**
+     * 玩游戏
+     * @param game 游戏
+     */
+    public void play(Game game){
+        Scanner scanner = game.getScanner();
+        boolean over = false;
+        int resultNumber = game.getResult();
+        while(!over){
+            System.out.print("["+name+"]请输入一个数字：");
+            String input = scanner.nextLine();
+            try{
+                int guess = Integer.parseInt(input.trim());
+                if(guess == resultNumber){
+                    // 猜中
+                    over = true;
+                }else if(guess < resultNumber){
+                    System.out.println("对不起，["+name+"]您猜的数字小啦！");
+                }else{
+                    System.out.println("对不起，["+name+"]您猜的数字大啦！");
+                }
+            }catch(NumberFormatException e){
+                System.out.println("只能输入数字！");
+                continue;
+            }
+        }
+        System.out.println("恭喜您["+name+"]，猜中了！");
+    }
+}
+
+```
+<!-- tabs:end -->
+
+### 继承
+
+### 多态
+
+### 重载
+
+### 重写
+
 
 ## 高级特性
 * 接口
