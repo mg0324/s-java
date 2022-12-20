@@ -998,7 +998,96 @@ public class Dog extends Animal{
 
 
 ## 高级特性
-* 接口
+### 接口
+在Java中接口是一种特殊的抽象类：
+* 通过`interface`关键字定义，只允许定义常量和抽象方法，不能有方法实现，实现接口使用`implements`关键字。
+* 接口不能被实例化，只能用于定义类型。
+* 实现接口的类必须实现该接口定义的所有抽象方法。Java8中接口还能有默认方法`defalut`，实现方法体。
+* 通过接口，Java可以实现多继承，一个接口可以继承另一个接口。
+* 在接口中，所有的变量都是常量，默认用`public static final`来修饰。
+
+<!-- tabs:start -->
+##### **Main**
+``` java
+public class Main {
+    public static void main(String[] args) {
+        // ChargeFace接口 来引用实现类对象变量
+        ChargeFace apple = new Apple();
+        apple.type();
+        
+        // 子类引用，则可以调用到Price上的接口方法
+        Huawei huawei = new Huawei();
+        huawei.type();
+        huawei.value();
+    }
+}
+```
+
+##### **ChargeFace接口**
+``` java
+/**
+ * 充电接口
+ */
+public interface ChargeFace {
+    String name = "充电接口";
+    /**
+     * 接口类型
+     */
+    void type();
+}
+```
+##### **Price接口**
+``` java
+/**
+ * 价格接口
+ */
+public interface Price {
+    /**
+     * 价值
+     */
+    void value();
+}
+```
+##### **实现类Apple**
+``` java
+/**
+ * 苹果牌手机
+ */
+public class Apple implements ChargeFace, Price {
+
+    @Override
+    public void type() {
+        System.out.println("Apple使用的是Lightning 接口");
+    }
+
+    @Override
+    public void value() {
+        System.out.println("Apple Phone价值7000-12000RMB");
+    }
+    
+}
+```
+##### **实现类Huawei**
+``` java
+/**
+ * 华为手机
+ */
+public class Huawei implements ChargeFace, Price{
+
+    @Override
+    public void type() {
+        System.out.println("Huawei部分使用的是usb-c接口");
+    }
+
+    @Override
+    public void value() {
+        System.out.println("Huawei Phone价值在3000-10000");
+    }
+    
+}
+```
+<!-- tabs:end -->
+
 * 泛型
 * 异常处理
 * 集合框架
