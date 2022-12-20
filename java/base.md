@@ -756,6 +756,85 @@ public class Player {
 <!-- tabs:end -->
 
 ### 继承
+#### 概念
+参考至Java菜鸟教程。
+* 继承是java面向对象编程技术的一块基石，因为它允许创建分等级层次的类。
+* 继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。
+
+#### 为什么需要继承
+* 提高代码复用性；如果A类的属性和方法，在其B类中也需要，则可以让B类 集成 A类来获得。
+* 提高代码的可维护性；如果父类里的方法需要修改，只需要修改一次，则自动应用到全部子类。
+* 实现代码的解耦；通过继承，可以将父类和子类解耦，使得类与类之间关系更加灵活。
+
+> [!tip]
+> Java里只有单继承，多继承可以通过实现接口来实现。
+
+#### 代码示例
+<!-- tabs:start -->
+##### **Main主方法**
+``` java
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog("小黑",2);
+        dog.cry();
+
+        Cat cat = new Cat("皮侃子",3);
+        cat.cry();
+    }
+}
+```
+运行结果：
+```
+2岁大的小黑狗狗开始哭泣了
+3岁大的皮侃子猫猫开始哭泣了
+```
+##### **Animal父类**
+``` java
+/**
+ * 动物类
+ */
+public class Animal {
+    protected String name;
+    protected Integer age;
+    protected String type;
+
+    protected Animal(String name,Integer age){
+        this.name = name;
+        this.age = age;
+    }
+    public void cry(){
+        System.out.println(age + "岁大的" + name + type + "开始哭泣了");
+    }
+}
+```
+##### **Cat猫子类**
+``` java
+/**
+ * 猫类
+ */
+public class Cat extends Animal {
+
+    protected Cat(String name, Integer age) {
+        super(name, age);
+        this.type = "猫猫";
+    } 
+}
+```
+##### **Dog狗子类**
+``` java
+/**
+ * 狗类
+ */
+public class Dog extends Animal{
+
+    protected Dog(String name, Integer age) {
+        super(name, age);
+        this.type = "狗狗";
+    }
+    
+}
+```
+<!-- tabs:end -->
 
 ### 多态
 
