@@ -9,4 +9,9 @@ public class Cat extends Animal {
         this.type = "猫猫";
     }
     
+    @Override
+    public void cry() {
+        super.cry();
+        System.out.println("喵喵喵！！！");
+    }
 }

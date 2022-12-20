@@ -9,4 +9,9 @@ public class Dog extends Animal{
         this.type = "狗狗";
     }
     
+    @Override
+    public void cry() {
+        super.cry();
+        System.out.println("汪汪汪！！！");
+    }
 }

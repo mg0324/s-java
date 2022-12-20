@@ -836,11 +836,165 @@ public class Dog extends Animal{
 ```
 <!-- tabs:end -->
 
-### 多态
-
 ### 重载
+**重载(overload)又称为方法重载，是指在同一个类中定义了多个同名的方法，方法的参数列表不同。**
+
+``` java
+public class Cal {
+    // 整型 + 整型的加法方法
+    public int add(int a,int b){
+        return a + b;
+    }
+    // 3个数相加的加法方法
+    public int add(int a,int b,int c){
+        return a + b + c;
+    }
+    // 小数 + 小数的加法方法
+    public float add(float a,float b){
+        return a + b;
+    }
+}
+```
+> [!tip]
+> 1. 参数列表不同，包括个数不同，或者类型不同，或者返回值不同等。
+> 2. overload方法重载，是发送在同一个类内部的。
 
 ### 重写
+**重写(override)又称为方法重写，是指子类重写父类中定义的方法。**
+
+比如继承中的例子，在子类里重写`cry()`，代码如下：
+<!-- tabs:start -->
+##### **猫类Cat**
+``` java
+/**
+ * 猫类
+ */
+public class Cat extends Animal {
+
+    protected Cat(String name, Integer age) {
+        super(name, age);
+        this.type = "猫猫";
+    }
+    
+    @Override
+    public void cry() {
+        super.cry();
+        System.out.println("喵喵喵！！！");
+    }
+}
+```
+##### **狗类Dog**
+``` java
+/**
+ * 狗类
+ */
+public class Dog extends Animal{
+
+    protected Dog(String name, Integer age) {
+        super(name, age);
+        this.type = "狗狗";
+    }
+    
+    @Override
+    public void cry() {
+        super.cry();
+        System.out.println("汪汪汪！！！");
+    }
+}
+```
+<!-- tabs:end -->
+
+> [!tip]
+> 1. 方法重写是发生在子类和父类之间，子类覆盖覆盖父类的方法。
+> 2. 方法重写(override)会有`@Override`的注解。
+
+### 多态
+**在 Java 面向对象编程中，多态是指一个对象可以具有多种类型，或者说一个引用可以指向多种类型的对象。多态的实现基于继承(`extends`)和方法重写(`override`)。**
+
+<!-- tabs:start -->
+##### **Main主方法**
+``` java
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog("小黑",2);
+        dog.cry();
+
+        Animal cat = new Cat("皮侃子",3);
+        cat.cry();
+    }
+}
+```
+运行结果：
+``` 
+2岁大的小黑狗狗开始哭泣了
+汪汪汪！！！
+3岁大的皮侃子猫猫开始哭泣了
+喵喵喵！！！
+```
+##### **Animal父类**
+``` java
+/**
+ * 动物类
+ */
+public class Animal {
+    protected String name;
+    protected Integer age;
+    protected String type;
+
+    protected Animal(String name,Integer age){
+        this.name = name;
+        this.age = age;
+    }
+    public void cry(){
+        System.out.println(age + "岁大的" + name + type + "开始哭泣了");
+    }
+}
+```
+##### **Cat猫子类**
+``` java
+/**
+ * 猫类
+ */
+public class Cat extends Animal {
+
+    protected Cat(String name, Integer age) {
+        super(name, age);
+        this.type = "猫猫";
+    } 
+
+    @Override
+    public void cry() {
+        super.cry();
+        System.out.println("喵喵喵！！！");
+    }
+}
+```
+##### **Dog狗子类**
+``` java
+/**
+ * 狗类
+ */
+public class Dog extends Animal{
+
+    protected Dog(String name, Integer age) {
+        super(name, age);
+        this.type = "狗狗";
+    }
+
+    @Override
+    public void cry() {
+        super.cry();
+        System.out.println("汪汪汪！！！");
+    }
+}
+```
+<!-- tabs:end -->
+
+> [!tip]
+> 1. 多态是基于继承和方法重写实现的。
+> 2. 多态允许用父类或者接口类的引用子类的对象，实际运行时JVM会根据引用的实际类型调用具体子类重写的方法。
+> 3. 多态也允许类型转换，前提是确保类型正确。
+
 
 
 ## 高级特性
