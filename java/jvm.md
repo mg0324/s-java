@@ -46,6 +46,7 @@
 * 及时编译器
 * 提前编译器
 * 常见编译器优化技术
+* [使用 GraalVM 为 Java 应用程序构建最少的 Docker 镜像](https://aws.amazon.com/cn/blogs/china/using-graalvm-build-minimal-docker-images-java-applications/)
 
 
 <!-- <iframe src="http://mg.meiflower.top/cardview/index.html?id=1" style="width:100%;height: 400px;"></iframe>

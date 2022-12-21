@@ -1088,8 +1088,102 @@ public class Huawei implements ChargeFace, Price{
 ```
 <!-- tabs:end -->
 
-* 泛型
-* 异常处理
-* 集合框架
+### 泛型
+#### 类型安全
+Java 中的泛型是一种类型安全机制，可以在编译时捕获类型错误，避免在运行时出现强制类型转换的错误。
+
+#### 类型擦除
+Java 的泛型是使用类型擦除实现的，这意味着在运行时无法获取泛型类型的具体类型信息。
+
+#### 局限性
+Java 的泛型存在一些局限性，比如不能直接`创建带泛型类型的数组`、`声明带泛型类型的异常`、使用 `instanceof运算符`或者 `catch` 子句。
+在使用泛型时，应该合理地使用通配符、类型转换和反射 API，并避免出现泛型的局限性。
+
+<!-- tabs:start -->
+##### **创建带泛型类型的数组**
+``` java
+List<String>[] array = new ArrayList()<String>[10]; // 编译错误
+// 使用通配符，编程成功
+List<?>[] array2 = new ArrayList<?>[10];
+```
+
+##### **声明带泛型类型的异常**
+``` java
+public <T> void foo() throws T { // 编译错误
+  // ...
+}
+// 使用继承，缩小T的返回为异常类型
+public <T extends Exception> void foo() throws T { // 编译正常
+  // ...
+}
+```
+在使用这种方式声明的异常中，不能捕获具体的异常类型。
+
+##### **instanceof运算符**
+``` java
+List<String> list = new ArrayList<>();
+if (list instanceof List<String>) { // 编译错误
+  // ...
+}
+```
+如果要确定变量里的具体类型，可通过反射来获取。
+
+##### **catch子句**
+``` java
+try {
+  // ...
+} catch (List<String> e) { // 编译错误
+  // ...
+}
+```
+`catch`只能抓异常类型。
+
+<!-- tabs:end -->
+
+#### 通配符
+Java 中的通配符是一种特殊的泛型类型，它可以用来表示任何类型，但是存在一些局限性，比如不能使用通配符来声明泛型类型的变量或者返回值类型，也不能作为类型参数的类型界定。
+
+#### 默认类型
+Java 8 开始，泛型支持使用默认类型，可以在声明泛型时指定一个默认类型。
+``` java
+public class MyClass<T = String> { ... }
+```
+
+#### 影响重载
+Java 中的重载方法的调用可能会受到泛型的影响，可以使用显式的类型参数来指定泛型类型。
+``` java
+public class MyClass {
+  public int foo(List<String> list) {}
+  public String foo(List<Integer> list) {}
+}
+```
+在类型擦除后，是编译不通过的。
+
+### 异常处理
+> 异常处理是一种机制，它捕获和处理在程序运行时发生的异常。
+* 异常是在程序运行时发生的不正常事件，使用`try-catch` 块用于捕获和处理异常。
+``` java
+try {
+    // Code that might throw an exception
+} catch (ExceptionType1 ex) {
+    // Code to handle ExceptionType1
+} catch (ExceptionType2 ex) {
+    // Code to handle ExceptionType2
+} catch (ExceptionType3 ex) {
+    // Code to handle ExceptionType3
+}
+```
+* `Throwable` 类是所有异常的基类，它有两个子类：`Error` 和 `Exception`;`Exception` 类表示可以恢复的问题，例如文件未找到异常；而`Error`类则是表示严重问题，通常是无法恢复的情况，例如虚拟机错误。还有一种受检异常是在编译时必须处理的异常，可以使用`try-catch`处理异常，也可以使用 throws 关键字在方法声明中声明可能抛出的异常。
+``` java
+public void readFile(String fileName) throws IOException {
+    // Code to read the file
+}
+```
+ 
+### 集合框架 
+* List - ArrayList、LinkedList
+* Set - ArraySet、HashSet、CurrentHashSet、TreeSet
+* Map - HashMap、LinkedHashMap、CurrentHashMap、TreeMap
+
 
 
