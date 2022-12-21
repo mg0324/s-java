@@ -1,6 +1,7 @@
 package code.base.interface2;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Main {
@@ -28,6 +29,7 @@ public class Main {
         public String foo(List list) {return "1";}
     } 
 
+    SortedSet
     
 }
 
