@@ -11,6 +11,7 @@
 *** 变量
 *** 数据类型
 **** 基本数据类型
+*****_ boolean
 *****_ byte
 *****_ short
 *****_ char
@@ -126,7 +127,7 @@ public class Ver {
 Java的数据类型分为2大类，分别是：`基本数据类型`和 `引用数据类型`。
 
 #### 基本数据类型
-
+**boolean类型，1字节，值为0表示false，值为1表示true。**
 <!-- tabs:start -->
 
 ##### **byte 1字节**
@@ -491,7 +492,7 @@ public class GuessNumber {
 
 ### Java关键字
 
-<table class="reference">
+<table>
 <tbody><tr>
 <th>类别</th>
 <th>关键字</th>
@@ -580,6 +581,131 @@ public class GuessNumber {
 <td>continue</td>
 <td>继续</td>
 </tr>
+<tr>
+<td>do</td>
+<td>运行</td>
+</tr>
+<tr>
+<td>else</td>
+<td>否则</td>
+</tr>
+<tr>
+<td>for</td>
+<td>循环</td>
+</tr>
+<tr>
+<td>if</td>
+<td>如果</td>
+</tr>
+<tr>
+<td>instanceof</td>
+<td>实例</td>
+</tr>
+<tr>
+<td>return</td>
+<td>返回</td>
+</tr>
+<tr>
+<td>switch</td>
+<td>根据值选择执行</td>
+</tr>
+<tr>
+<td>while</td>
+<td>循环</td>
+</tr>
+<tr>
+<td rowspan="6" align="center">错误处理</td>
+<td>assert</td>
+<td>断言表达式是否为真</td>
+</tr>
+<tr>
+<td>catch</td>
+<td>捕捉异常</td>
+</tr>
+<tr>
+<td>finally</td>
+<td>有没有异常都执行</td>
+</tr>
+<tr>
+<td>throw</td>
+<td>抛出一个异常对象</td>
+</tr>
+<tr>
+<td>throws</td>
+<td>声明一个异常可能被抛出</td>
+</tr>
+<tr>
+<td>try</td>
+<td>捕获异常</td>
+</tr>
+<tr>
+<td rowspan="2" align="center">包相关</td>
+<td>import</td>
+<td>引入</td>
+</tr>
+<tr>
+<td>package</td>
+<td>包</td>
+</tr>
+<tr>
+<td rowspan="8" align="center">基本类型</td>
+<td>boolean</td>
+<td>布尔型</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>字节型</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符型</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短整型</td>
+</tr>
+
+<tr>
+<td rowspan="3" align="center">变量引用</td>
+<td>super</td>
+<td>父类,超类</td>
+</tr>
+<tr>
+<td>this</td>
+<td>本类</td>
+</tr>
+<tr>
+<td>void</td>
+<td>无返回值</td>
+</tr>
+<tr>
+<td rowspan="3" align="center">保留关键字</td>
+<td>goto</td>
+<td>是关键字，但不能使用</td>
+</tr>
+<tr>
+<td>const</td>
+<td>是关键字，但不能使用</td>
+</tr>
+
+</tbody>
+</table>
 
 ## 面向对象编程
 
