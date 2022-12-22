@@ -1,6 +1,8 @@
 > Java是一种高级计算机语言，支持跨平台、面向对象的程序设计语言。
 ## 知识大纲
 
+主要包括Java基础、面向对象和高级特性。
+
 ```plantuml
 @startmindmap
 * Java基础
@@ -47,7 +49,8 @@
 --- 接口
 --- 泛型
 --- 异常处理
---- 集合框架
+--- 注解
+--- 反射
 @endmindmap
 ```
 
@@ -707,13 +710,18 @@ public class GuessNumber {
 </tbody>
 </table>
 
-## 面向对象编程
-
+## 面向对象
 ### 引言
 
 在面向对象编程(oop)思想出现之前，程序都是基于面向过程编程的思想来编写的。
 
 如上面猜数字的小游戏，就是将猜数的过程按步骤划分并实现即可；面向过程思路清晰，但是无法适应大型复杂的工程建设，所以结合现实社会特点，出现了面向对象编程的思想。
+
+> 面向对象的三大特性，分别是封装、继承和多态。
+
+### 封装
+利用抽象数据类型将数据和基于数据的操作封装在一起，使其构成一个不可分割的独立实体。数据被保护在抽象数据类型的内部，尽可能地隐藏内部的细节，只保留一些对外接口使之与外部发生联系。用户无需知道对象内部的细节，但可以通过对象对外提供的接口来访问该对象。
+
 
 ### 类和对象
 
@@ -1363,28 +1371,3 @@ public void readFile(String fileName) throws IOException {
     // Code to read the file
 }
 ```
-
-### 集合框架
-
-Java集合框架是Java中用于存储、操作、查询集合（数据结构）的一组类和接口。
-
-> 细节及深入请查看：https://pdai.tech/md/java/collection/java-collection-all.html
-
-#### 家族图
-
-* `Collection`接口
-  * `List`接口 - 有序可重复集合
-    - 常用实现类有 `ArrayList`、`LinkedList`
-  * `Set`接口 - 无序不可重复集合
-    - 常用实现类有 `HashSet`、`TreeSet`
-  * `Queue`接口 - `FIFO`顺序集合
-    - 常用实现类有 `LinkedList`、`PriorityQueue`
-  * `Deque`接口 - 双端队列
-    - 常用实现类有 `LinkedList`和 `ArrayDeque`
-* `Map`接口 - 不是集合，用于存储键值对
-  - 常用实现类有 `HashMap`、`LinkedHashMap`、`TreeMap`
-
-#### 工具类
-
-* `java.util.Collections`工具类提供了一组静态方法来操作集合，如排序、二分查找和替换。
-* `java.util.Arrays`工具类，提供了排序、二分查找和替换等操作方法。
