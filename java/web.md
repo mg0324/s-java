@@ -18,7 +18,6 @@
 
 点击跳转到[web进阶](https://mg.meiflower.top/skill/front/web-advance)查看
 
-
 ## Servlet
 ### 概念
 `Servlet（Server Applet）`是`Java Servlet`的简称，称为小服务程序或服务连接器，用Java编写的服务器端程序，具有独立于平台和协议的特性，主要功能在于交互式地浏览和生成数据，生成动态Web内容。
@@ -320,6 +319,152 @@ Tomcat, Jetty, resin, Oracle Application server, WebLogic Server, Glassfish, Web
 
 
 ## JSP
+### 概念
+JSP（全称JavaServer Pages）是由Sun Microsystems公司主导创建的一种动态网页技术标准。
+
+### 特点
+* 能以模板化的方式简单、高效地添加动态网页内容。
+* 可利用JavaBean和标签库技术复用常用的功能代码（设计好的组件容易实现重复利用，减少重复劳动）。标签库不仅带有通用的内置标签JSTL)，而且支持可扩展功能的自定义标签。
+* 继承了Java的跨平台优势，实现“一次编写，处处运行”。
+
+### 包含内容
+* JSP指令
+JSP指令控制JSP编译器如何去生成servlet，如：
+``` jsp
+<%@ include file="somefile.jsp" %>
+<%@ taglib prefix="myprefix" uri="taglib/mytag.tld" %>
+```
+
+* JSP内置变量
+    - out：JSPWriter，用来写入响应流的数据
+    - page：servlet自身
+    - pageContext：一个PageContext实例包括和整个页面相联系的数据，一个给定的HTML页面可以在多个JSP之间传递。
+    - request：HTTP request（请求）对象
+    - response：HTTP response（响应）对象
+    - session：HTTP session（服务端会话）对象
+
+* JSP动作
+JSP动作是一系列可以调用内建于网络服务器中的功能的XML标签。JSP提供了以下动作：
+```
+jsp:include
+jsp:forward
+```
+
+* JSP标签库
+除了JSP预定义动作之外，开发者还可以使用JSP标签扩展API添加他们自定义的动作。
+如jstl标签库：
+```
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:out >
+<c:if >
+<c:forEach >
+...
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:formatDate>
+...
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:query>
+...
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+fn:endsWith()
+...
+```
+
+### JSP的4大范围
+* application：
+全局作用范围，整个应用程序共享，就是在部署文件中的同一个webApp共享，生命周期为：应用程序启动到停止。
+* session：
+会话作用域，当用户首次访问时，产生一个新的会话，以后服务器就可以记住这个会话状态。生命周期：会话超时，或者服务器端强制使会话失效。
+* request：
+请求作用域，就是客户端的一次请求。
+* page：
+一个JSP页面。
+
+### JSP的9大内置对象
+| 内置对象 | 说明 | 类型 | 作用域 |
+| -- | -- | -- | -- |
+| request       | 请求对象  |               javax.servlet.ServletRequest |       　　    Request |
+| response      | 响应对象                |  javax.servlet.SrvletResponse       　　    |  Page | 
+| pageContext   | 页面上下文对象           |  javax.servlet.jsp.PageContext             |  Page | 
+| session       | 会话对象                |  javax.servlet.http.HttpSession       　　  |  Session | 
+| application   | 应用程序对象             |  javax.servlet.ServletContext              |  Application | 
+| out           | 输出对象                |  javax.servlet.jsp.JspWriter                |  Page | 
+| config        | 配置对象                |  javax.servlet.ServletConfig                |  Page | 
+| page          | 页面对象                |  javax.lang.Object                          |  Page | 
+| exception     | 例外对象                |  javax.lang.Throwable                       |  page | 
+
+
+### JSP项目实战
+URL权限控制系统：https://github.com/mg0324/urlcheck/tree/maven
+
+代码回顾：
+``` jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mg" uri="http://room.mgang.com/checkFunction" %>
+<link href="${pageContext.request.contextPath}/bclient/css/user/admin.css" type="text/css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/bclient/css/user/bt_table.css" type="text/css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet"  href="${pageContext.request.contextPath}/3td/cus-icons/cus-icons.css">
+<jsp:include page="../public/importValidate.jsp"></jsp:include>
+<div class="fun">
+	<div class="funTitle">
+		　权限设置&gt;查看权限列表
+	</div>
+	<div class="funContent">
+		    <table class="table table-condensed table-bordered table-striped table-hover table12" cellspacing="0" cellpadding="0">
+		    	<tr>
+		    		<th>操作</th>
+		    		<th style="width: 40px;">编号</th>
+		    		<th style="width: 40px;">类型</th>
+		    		<th style="width:120px;">权限名称</th>
+		    		<th>权限描述</th>
+		    		<th>请求资源</th>
+		    		<th style="width: 40px;">后缀</th>
+		    		<th>请求参数</th>
+		    	</tr>
+		    	<c:forEach items="${page.list }" var="fun">
+		    		<tr>
+		    			<td>
+				    		<c:if test="${mg:check(loginUser,'function.do?toUpdateFunctionUI&funId') }">
+				    			<a title="修改权限" href="${pageContext.request.contextPath}/function.do?action=toUpdateFunctionUI&funId=${fun.funId}"
+				    			 onclick="return confirm('您真的要修改该权限吗？')"><i class="cus-lock_edit"></i></a>
+				    		</c:if>
+				    		<c:if test="${mg:check(loginUser,'function.do?deleteFunction&funId') }">
+				    			<a title="删除权限" href="${pageContext.request.contextPath}/function.do?action=deleteFunction&funId=${fun.funId}" onclick="return confirm('您真的要删除该权限吗？');"><i class="cus-lock_delete"></i></a>
+				    		</c:if>
+			    		</td>
+			    		<td>${fun.funId }</td>
+			    		<td>${fun.type }</td>
+			    		<td>${fun.funName }</td>
+			    		<td>${fun.note }</td>
+			    		<td>${fun.resource }</td>
+			    		<td>${fun.stuffix }</td>
+			    		<td>${fun.params }</td>
+			    		
+			    	</tr>
+		    	</c:forEach>
+		    	
+		    </table>
+		    <input type="hidden" value="${resString }" id="msg"/>
+			
+	</div>
+	<div align="center">
+		<jsp:include page="../public/pager.jsp">
+			<jsp:param
+				value="${pageContext.request.contextPath}/function.do?action=listFunction"
+				name="path" />
+		</jsp:include>
+	</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+	$(function(){
+		//弹出反馈信息
+		alertMsg("msg",12);
+	});
+</script>    
+```
+其中有用到`jstl`标签和`el`表达式，自定义标签库函数等特性。
 
 ## JDBC
 
