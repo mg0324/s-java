@@ -660,6 +660,159 @@ JSP 2.0的一个主要特点是它支持表达语言(expression language)。JSTL
 
 
 ## JDBC
+### 概念
+Java数据库连接，（`Java Database Connectivity`，简称`JDBC`）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口，提供了诸如查询和更新数据库中数据的方法。
+
+让你的Java程序能操作各种数据库资源，在此基础上发展出很多框架：
+* apache dbutil
+* mybatis / mybatis-plus
+* hibernate
+等。
+
+### 操作步骤
+1. 加载驱动（由数据库官方提供的java的jdbc驱动包）
+2. 获取数据库链接
+3. 通过连接，执行sql
+4. 关闭链接资源
+
+### 代码示例
+添加依赖
+``` xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.20</version>
+</dependency>
+```
+
+<!-- tabs:start -->
+##### **原始JDBC代码**
+``` java
+import java.sql.*;
+
+public class App {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        // 1. 加载驱动
+        Class.forName("com.mysql.jdbc.Driver");
+        // 2. 获取链接
+        Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33306/url_function?useUnicode=true&characterEncoding=UTF-8",
+                "root", "123456");
+        // 3. 执行sql
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from t_user");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            String userId = resultSet.getString("userId");
+            String userName = resultSet.getString("userName");
+            String email = resultSet.getString("email");
+            String phone = resultSet.getString("phone");
+            System.out.println("userId="+userId+",userName="+userName+",email="+email+",phone="+phone);
+        }
+        // 4. 关闭链接资源
+        connection.close();
+    }
+}
+```
+##### **DbUtils的JDBC代码**
+``` java
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * @Author: mango
+ * @Date: 2022/12/31 8:45 PM
+ */
+public class DbUtilApp {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        // 1. 加载驱动
+        Class.forName("com.mysql.jdbc.Driver");
+        // 2. 获取链接
+        Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:33306/url_function?useUnicode=true&characterEncoding=UTF-8",
+                "root", "123456");
+        // 3. 通过dbutils的BeanListHandler来查询数据
+        QueryRunner queryRunner = new QueryRunner();
+        List<User> resultList = (List<User>)queryRunner.query(connection, "select * from t_user", new BeanListHandler(User.class));
+        for(User user : resultList){
+            System.out.println(user.toString());
+        }
+        // 4. 关闭资源链接
+        connection.close();
+    }
+}
+```
+##### **DbUtils的JDBC代码-User的Bean类**
+``` java
+/**
+ * @Author: mango
+ * @Date: 2022/12/31 8:57 PM
+ */
+public class User{
+    private String userId;
+    private String userName;
+    private String phone;
+    private String email;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+}
+```
+<!-- tabs:end -->
+
+运行结果：
+```
+userId=1,userName=admin,email=admin@163.com,phone=null
+userId=2,userName=tempuser,email=1092017732@qq.com,phone=18271263336
+userId=3,userName=nomaladmin,email=null,phone=null
+userId=4,userName=manager,email=null,phone=null
+userId=5,userName=meigang,email=null,phone=null
+userId=6,userName=roleManager,email=null,phone=null
+userId=7,userName=userManager,email=null,phone=null
+userId=9,userName=funManager,email=null,phone=null
+```
+
 
 ## 数据库
 
