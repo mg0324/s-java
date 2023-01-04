@@ -24,7 +24,7 @@ public class PageServlet extends HttpServlet {
         writer.println("<html>");
         writer.println("<head>");
         writer.println("<meta charset=\"UTF-8\">");
-        writer.println("<title>servlet页面</title>");
+        writer.println("<title>servlet页面1</title>");
         writer.println("</head>");
         writer.println("<body style='color:red;'>");
         writer.println("这是我的第一个servlet页面");
