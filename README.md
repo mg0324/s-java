@@ -48,7 +48,7 @@
                 <a :href="theHref(part)">{{theName(part)}}</a>
             </div>
             <div v-else-if="status(part) == '2'" class="layui-col-xs12 layui-col-sm12 layui-col-md2 doing">
-                <a :href="theHref(part)" target="_blank">{{theName(part)}}</a>
+                <a :href="theHref(part)">{{theName(part)}}</a>
             </div>
             <div v-else class="layui-col-xs12 layui-col-sm12 layui-col-md2 no">
                     {{theName(part)}}
@@ -91,7 +91,7 @@
                         },
                         {
                             moduleName: 'Java核心',
-                            parts:['Java基础和面向对象@2@/s-java/java/base','Java Web@2@/s-java/java/web','Java进阶集合框架','Java进阶IO框架','Java进阶高并发@1@/s-java/java/juc','Java进阶虚拟机@1@/s-java/java/jvm']
+                            parts:['Java基础和面向对象@1@#/java/base','Java Web@1@#/java/web','Java进阶集合框架@2@#/java/collection','Java进阶IO框架@2@#/java/io','Java进阶高并发@1@#/java/juc','Java进阶虚拟机@1@#/java/jvm']
                         }
                     ]
                 };
