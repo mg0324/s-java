@@ -2,6 +2,7 @@
 ## 知识大纲
 
 主要包括Java基础、面向对象和高级特性。
+<div class="plantuml">
 
 ```plantuml
 @startmindmap
@@ -53,6 +54,8 @@
 --- 反射
 @endmindmap
 ```
+
+</div>
 
 ## Java发展历史
 

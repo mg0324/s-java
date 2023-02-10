@@ -2,6 +2,8 @@
 
 ## 知识大纲
 
+<div class="plantuml">
+
 ```plantuml
 @startmindmap
 *[#white] Java虚拟机
@@ -83,6 +85,7 @@
 
 @endmindmap
 ```
+</div>
 
 ## 走近Java
 * [Java的发展历史](http://mg.meiflower.top/mb/post/jvm/Java%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/)

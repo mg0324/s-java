@@ -2,6 +2,8 @@
 
 ## 知识大纲
 
+<div class="plantuml">
+
 ```plantuml
 @startmindmap
 *[#white] Java并发
@@ -40,6 +42,8 @@
 --- 异步回调future模式
 @endmindmap
 ```
+
+</div>
 
 ## 走近并行
 * [走入并行的世界](http://mg.meiflower.top/mb/post/juc/%E8%B5%B0%E5%85%A5%E5%B9%B6%E8%A1%8C%E7%9A%84%E4%B8%96%E7%95%8C/)
