@@ -1,45 +1,3 @@
-<!-- 引入 layui.css -->
-<link href="//unpkg.com/layui@2.7.6/dist/css/layui.css" rel="stylesheet">
-
-<style type="text/css">
-.layui-row{
-    display: flex;
-    flex-flow: row wrap;
-    align-content: space-between;
-}
-.layui-row a{
-    color: white;
-}
-.layui-row a:hover{
-    text-decoration:underline;
-}
-.layui-row div{
-    border: 1px solid gray;
-    height:50px;
-    display: flex;
-    flex-flow: row wrap;
-    align-content: center;
-    justify-content: center;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-}
-.layui-row .has {
-    background-color: green;
-    color: white;
-}
-
-.layui-row .doing {
-    background-color: blue;
-    color: white;
-}
-
-.layui-row .no {
-    background-color: white;
-    color: black;
-}
-</style>
-
 <div id="container" class="layui-container">
     <fieldset class="layui-elem-field" style="padding: 10px;" v-for="(item,index) in nodes">
         <legend>{{item.moduleName}}</legend>
@@ -108,5 +66,23 @@
                 }
             }
         });
+        importLayuiCss();
+        importLayuiRowCss();
     })();
+
+    function importLayuiCss(){
+        var hm = document.createElement("link");
+        hm.href = "//cdn.jsdelivr.net/npm/layui@2.7.6/dist/css/layui.css";
+        hm.rel = "stylesheet";
+        var s = document.getElementsByTagName("link")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    }
+
+    function importLayuiRowCss(){
+        var hm = document.createElement("link");
+        hm.href = "static/css/layui-row.css";
+        hm.rel = "stylesheet";
+        var s = document.getElementsByTagName("link")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    }
 </script>

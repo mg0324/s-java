@@ -1,0 +1,36 @@
+.layui-row{
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-between;
+}
+.layui-row a{
+    color: white;
+}
+.layui-row a:hover{
+    text-decoration:underline;
+}
+.layui-row div{
+    border: 1px solid gray;
+    height:50px;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+.layui-row .has {
+    background-color: green;
+    color: white;
+}
+
+.layui-row .doing {
+    background-color: blue;
+    color: white;
+}
+
+.layui-row .no {
+    background-color: white;
+    color: black;
+}
