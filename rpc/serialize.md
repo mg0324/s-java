@@ -495,6 +495,7 @@ public class ProtostuffTest {
 </div>
  
 如上图中6要素，优先级从高到低考虑。
+
 * 安全性
 * 通用性
 * 兼容性
