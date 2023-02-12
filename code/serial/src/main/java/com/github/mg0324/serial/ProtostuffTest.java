@@ -6,7 +6,6 @@ import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -16,7 +15,7 @@ import java.util.Date;
  * @Author: mango
  * @Date: 2023/2/12 6:54 PM
  */
-public class ProtosutffTest {
+public class ProtostuffTest {
     public static void main(String[] args) throws IOException {
         String home = System.getProperty("user.home");
         String basePath = home + "/Desktop";
@@ -34,7 +33,9 @@ public class ProtosutffTest {
         // 序列化
         final byte[] protostuff;
         try {
+            long start = System.currentTimeMillis();
             protostuff = ProtostuffIOUtil.toByteArray(cat, schema, buffer);
+            System.out.println("ser time:"+(System.currentTimeMillis()-start));
         }finally {
             buffer.clear();
         }
@@ -43,9 +44,15 @@ public class ProtosutffTest {
         fos.close();
 
         // 反序列化
-        FileInputStream fis = new FileInputStream(basePath + "/cat-hessian.bin");
+        FileInputStream fis = new FileInputStream(basePath + "/cat-protostuff.bin");
+        byte[] data = new byte[fis.available()];
+        fis.read(data);
+        fis.close();
+
         Cat catParsed = schema.newMessage();
-        ProtostuffIOUtil.mergeFrom(protostuff, catParsed, schema);
+        long start = System.currentTimeMillis();
+        ProtostuffIOUtil.mergeFrom(data, catParsed, schema);
+        System.out.println("deser time:"+(System.currentTimeMillis()-start));
         System.out.println(catParsed);
     }
 }

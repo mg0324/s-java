@@ -5,6 +5,7 @@ import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.serializers.BeanSerializer;
 import com.esotericsoftware.kryo.serializers.JavaSerializer;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,16 +16,15 @@ import java.util.Date;
  * @Author: mango
  * @Date: 2023/2/12 7:05 PM
  */
-public class KyroTest {
+public class KryoTest {
     public static void main(String[] args) throws FileNotFoundException {
         String home = System.getProperty("user.home");
         String basePath = home + "/Desktop";
         System.out.println(basePath);
-        FileOutputStream fos = new FileOutputStream(basePath + "/cat-kyro.bin");
+        FileOutputStream fos = new FileOutputStream(basePath + "/cat-kryo.bin");
 
         Kryo kryo = new Kryo();
-        // kryo.register(Cat.class, new JavaSerializer());
-        kryo.register(Cat.class, new BeanSerializer(kryo,Cat.class));
+        kryo.register(Cat.class, new JavaSerializer());
 
         Cat cat = new Cat();
         cat.setName("皮侃子");
@@ -36,7 +36,7 @@ public class KyroTest {
         output.close();
 
         // 反序列化
-        Input input = new Input(new FileInputStream(basePath + "/cat-kyro.bin"));
+        Input input = new Input(new FileInputStream(basePath + "/cat-kryo.bin"));
         Cat pkz = kryo.readObject(input, Cat.class);
         input.close();
         System.out.println(pkz);

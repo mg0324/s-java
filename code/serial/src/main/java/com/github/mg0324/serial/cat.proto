@@ -1,12 +1,10 @@
-/** *
+syntax = "proto3";
+import public "google/protobuf/timestamp.proto";
+option java_package = "com.github.mg0324.serial";
+option java_outer_classname = "CatProtobuf";
 
-IDL Interface
-* // IDl
-* synax = "proto3";
-* option java_package = "com.test";
-* option java_outer_classname = "StudentProtobuf"; *
-* message StudentMsg {
-* //
-* int32 no = 1;
-* //
-* string name = 2; *}
+message CatMsg {
+  string name = 1;
+  int32 age = 2;
+  google.protobuf.Timestamp birthday = 3;
+}
