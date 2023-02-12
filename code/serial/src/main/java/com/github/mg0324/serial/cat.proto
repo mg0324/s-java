@@ -1,0 +1,12 @@
+/** *
+
+IDL Interface
+* // IDl
+* synax = "proto3";
+* option java_package = "com.test";
+* option java_outer_classname = "StudentProtobuf"; *
+* message StudentMsg {
+* //
+* int32 no = 1;
+* //
+* string name = 2; *}
