@@ -6,3 +6,8 @@ code/web2.5/target/
 code/web3.0/work/
 code/web3.0/*.iml
 code/serial/target/
+code/plugin/plugin-api/target
+code/plugin/plugin-core/target
+code/plugin/plugin-test/target
+code/plugin/plugins/
+code/jdbc/target

@@ -13,7 +13,7 @@ public class MainApplication {
     // 加载插件
     public void loadPlugins() {
         // 从指定目录加载插件
-        File pluginDir = new File("plugins");
+        File pluginDir = new File("plugin/plugins");
         File[] pluginFiles = pluginDir.listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {

@@ -4,6 +4,10 @@ public class MyPlugin implements Plugin {
 
     private String name;
 
+    public MyPlugin(){
+
+    }
+
     public MyPlugin(String name) {
         this.name = name;
     }
