@@ -47,6 +47,19 @@
       border:1px solid #ddd;
       border-radius: 3px;
     }
+    .mg-badge {
+      color: #fff;
+      display: inline-block;
+      padding-left: 8px;
+      padding-right: 8px;
+      text-align: center;
+      background-color: #42b983;
+      border-radius: 10%;
+      position: relative;
+      top: -15px;
+      left: 0px;
+      font-size: 15px;
+    }
   </style>
   <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
   <!--[if lt IE 9]>
@@ -58,7 +71,7 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: 'Java体系学习',
+      name: 'Java体系学习<span class="mg-badge">1.0.0</span>',
       repo: 'https://gitee.com/mgang/s-java.git',
       coverpage: false,
       loadNavbar: true,
@@ -237,7 +250,7 @@
         repoId: "R_kgDOI68LwA",
         category: "Announcements",
         categoryId: "DIC_kwDOI68LwM4CUDhM",
-        mapping: "url",
+        mapping: "title",
         reactionsEnabled: "0",
         strict: "1",
         emitMetadata: "0",

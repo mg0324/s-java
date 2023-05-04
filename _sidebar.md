@@ -7,6 +7,8 @@
   - [Java进阶之高并发](java/juc.md)
   - [Java进阶之虚拟机](java/jvm.md)
   - [字节码速查表](java/bytecode.md)
+  - [Java8的新特性](java/java8.md)
+- [Java知识点总结](summary.md)
 - [框架](framework/index.md)
 - RPC
   - [RPC核心原理](rpc/start.md)
