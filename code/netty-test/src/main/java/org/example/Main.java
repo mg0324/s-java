@@ -10,6 +10,10 @@ import io.netty.channel.FileRegion;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,8 +28,32 @@ public class Main {
         compositeByteBuf.addComponent(buf);
         compositeByteBuf.addComponent(buf1);
         System.out.println(compositeByteBuf.toString());
-       
-        FileRegion fileRegion = new DefaultFileRegion();
-        fileRegion.transferTo()
+
+        boolean[] bb = sieveOfEratosthenes(60);
+        for(int i=0;i<bb.length;i++){
+            if(bb[i]){
+                System.out.print(i+",");
+            }
+        }
     }
+
+    public static boolean[] sieveOfEratosthenes(int n) {
+        Character
+        Set set = new HashSet();
+        boolean[] isPrime = new boolean[n + 1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = false;
+        isPrime[1] = false;
+        for (int i = 2; i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    System.out.println(j + " set false");
+                    isPrime[j] = false;
+                }
+            }
+        }
+        new PriorityQueue<String>((o1, o2) -> o1.compareTo(o2) );
+        return isPrime;
+    }
+
 }

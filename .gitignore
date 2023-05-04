@@ -12,3 +12,4 @@ code/plugin/plugin-test/target
 code/plugin/plugins/
 code/jdbc/target
 code/netty-test/target
+code/test/target
