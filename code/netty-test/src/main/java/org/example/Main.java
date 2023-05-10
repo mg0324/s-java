@@ -38,7 +38,6 @@ public class Main {
     }
 
     public static boolean[] sieveOfEratosthenes(int n) {
-        Character
         Set set = new HashSet();
         boolean[] isPrime = new boolean[n + 1];
         Arrays.fill(isPrime, true);

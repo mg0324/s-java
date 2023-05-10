@@ -3,7 +3,9 @@
 ## 2023-05-xx
 1. 将Java知识点总结从猫大刚主页中迁移到Java学习体系中。
 2. 添加Java8特性篇，简单列举一些特性，参考Java学习路线中对应视频。（华为ilearning）
-3. 完善java8特性篇内容，补充lambda表达式和stream api的内容。
+3. 完善Java8特性篇内容，补充lambda表达式和stream api的内容。
+4. 完善Java8中Optional类出来空指针和接口里的默认方法和静态方法。
+5. 完善Java8中新的时间API内容。
 
 ## 2023-02-24
 1. RPC专栏，新增并完成RPC的网络通信章节，再次将网络模型bio,nio,多路复用，零拷贝等知识回顾熟悉。
