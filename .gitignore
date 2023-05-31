@@ -1,4 +1,5 @@
 .history
+code/.idea
 code/web2.5/.idea
 code/web3.0/.idea
 code/web3.0/target
@@ -13,3 +14,4 @@ code/plugin/plugins/
 code/jdbc/target
 code/netty-test/target
 code/test/target
+.DS_Store
