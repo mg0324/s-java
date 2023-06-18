@@ -1,6 +1,6 @@
 
 ## 介绍
-* 广义上理解：`Spring`是以`Spring框架`为核心的`Spring`技术栈。包括多个子项目，如`Spring Framework`、`Spring MVC`、`SpringBoot`、`SpringCloud`、`SpringData`、`SpringSecurity`等。
+* 广义上理解：`Spring`是以`Spring框架`为核心的`Spring`技术栈。包括多个子项目，如`Spring Framework`、`SpringBoot`、`SpringCloud`、`SpringData`、`SpringSecurity`等。
 * 狭义上理解：`Spring`是指`Spring Framework`框架。
 
 ## 中文文档
