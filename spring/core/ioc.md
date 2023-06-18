@@ -1,12 +1,64 @@
 ## 概念
-IoC就是控制反转，是一种思想，将对象创建交个spring管理，而DI（依赖注入）是一种具体的实现。
+`IoC`就是控制反转，是一种思想，将对象创建交个`spring`管理，而`DI`（依赖注入）是一种具体的实现。
 
 ## 快速入门
-* 从xml配置文件创建spring ioc，ClassPathXmlApplicationContext
-编写示例通过bean输出hello spring。
+* 从`xml`配置文件创建`spring ioc`，`ClassPathXmlApplicationContext`
+编写示例通过bean输出[spring-hello-world](https://github.com/mg0324/java-code/tree/main/spring-hello-world)。
 
 !> 通过xml配置方式来完成，后续可以通过注解配置方式完成。
+beans.xml
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="helloSpring" class="com.mango.HelloSpring"></bean>
+</beans>
+```
+HelloSpring.java
+``` java
+package com.mango;
 
+/**
+ * hello spring
+ *
+ * @author mango
+ * @since 2023/06/18
+ */
+public class HelloSpring {
+
+    public void hello(){
+        System.out.println("hello spring");
+    }
+}
+```
+TestHelloSpring.java
+``` java
+package com.mango;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
+/**
+ * test hello spring
+ *
+ * @author mango
+ * @since 2023/06/18
+ */
+public class TestHelloSpring {
+    public static void main(String[] args) {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+        HelloSpring helloBean = (HelloSpring) applicationContext.getBean("helloSpring");
+        helloBean.hello();
+    }
+}
+
+/**
+ * 打印：
+ * hello spring
+ */
+```
 
 ## bean的三种获取方式
 * context.getBean(name)
