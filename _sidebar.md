@@ -11,7 +11,7 @@
   - [字节码速查表](java/bytecode.md)
   - [Java8的新特性](java/java8.md)
 - Spring
-  - [介绍](spring/introduce.md)
+  - [前言](spring/introduce.md)
   - [Spring之IoC](spring/core/ioc.md)
 - [Java知识点总结](summary.md)
 - [框架](framework/index.md)
