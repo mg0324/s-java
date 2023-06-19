@@ -2,6 +2,7 @@
 
 ## 2023-06-xx
 1. 完善spring介绍。
+2. 完善ioc篇章，新增概念、快速入门、ApplicationContext的常见实现类等。
 
 ## 2023-05-xx
 1. 将Java知识点总结从猫大刚主页中迁移到Java学习体系中。

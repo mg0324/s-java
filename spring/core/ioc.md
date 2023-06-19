@@ -4,9 +4,13 @@
 ## 快速入门
 * 从`xml`配置文件创建`spring ioc`，`ClassPathXmlApplicationContext`
 编写示例通过bean输出[spring-hello-world](https://github.com/mg0324/java-code/tree/main/spring-hello-world)。
+* 可以使用[spring-initializr](https://start.spring.io/)来快速生成模板代码。
 
 !> 通过xml配置方式来完成，后续可以通过注解配置方式完成。
-beans.xml
+
+<!-- tabs:start -->
+#### **beans.xml**
+放在`classpath`下
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -15,7 +19,7 @@ beans.xml
     <bean id="helloSpring" class="com.mango.HelloSpring"></bean>
 </beans>
 ```
-HelloSpring.java
+#### **HelloSpring.java**
 ``` java
 package com.mango;
 
@@ -32,7 +36,8 @@ public class HelloSpring {
     }
 }
 ```
-TestHelloSpring.java
+#### **TestHelloSpring.java**
+使用`ClassPathXmlApplicationContext`实现类来加载配置文件。
 ``` java
 package com.mango;
 
@@ -59,6 +64,20 @@ public class TestHelloSpring {
  * hello spring
  */
 ```
+<!-- tabs:end -->
+
+## ApplicationContext的常见实现类
+<!-- tabs:start -->
+#### **ClassPathXmlApplicationContext**
+配置文件需要在`classpath`下
+![](../../static/spring/ClassPathXmlApplicationContext.png)
+#### **FileSystemXmlApplicationContext**
+配置文件需要在`project root path`下
+![](../../static/spring/FileSystemXmlApplicationContext.png)
+#### **AnnotationConfigApplicationContext**
+指定配置类（带有`@Configration`注解的类)
+![](../../static/spring/AnnotationConfigApplicationContext.png)
+<!-- tabs:end -->
 
 ## bean的三种获取方式
 * context.getBean(name)
