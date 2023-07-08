@@ -79,7 +79,7 @@ public class TestHelloSpring {
 ![](../../static/spring/AnnotationConfigApplicationContext.png)
 <!-- tabs:end -->
 
-## bean的三种获取方式
+## Bean的三种获取方式
 * context.getBean(name)
 * context.getBean(class)
 * context.getBean(name,class)
