@@ -3,6 +3,7 @@
 ## 2023-07-xx
 1. 给网站笔记添加icon。
 2. 完善ioc篇章。
+3. 完善spring ioc篇章，增加BeanDefinition说明。
 
 ## 2023-06-xx
 1. 完善spring介绍。

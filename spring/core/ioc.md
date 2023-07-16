@@ -90,6 +90,68 @@ public class TestHelloSpring {
 * `BeanDefinition` - `Bean`的配置元数据，定义构成`Bean`的一组属性，主要包括`全路径类名`、`行为方式`（`scope`、`生命周期回调`等）、`依赖`、`属性`等。
 
 ### BeanDefinition概述
+在`Spring`框架中，`BeanDefinition`是一个用来描述`Spring容器`中的一个`Bean`的`元数据对象`。它包含了`Bean`的`类名`、`属性值`、`构造函数参数`、`依赖关系`等信息。
+
+简单来说，`BeanDefinition`就是`Spring容器`中一个`Bean`的定义，它描述了这个Bean的所有信息。当`Spring容器`启动时，会读取`BeanDefinition`，根据其中的信息创建Bean实例，并将这些Bean实例纳入到容器中统一管理。
+
+常用属性如下：
+* beanClassName：Bean的类名。
+* scope：Bean的作用域。Spring支持的Bean作用域包括singleton（单例）、prototype（原型）、request（请求）、session（会话）和global-session（全局会话）。
+* constructorArgs：构造函数参数。
+* propertyValues：属性值。
+* autowireMode：自动装配模式。Spring支持的自动装配模式包括no（不自动装配）、byName（按名称自动装配）、byType（按类型自动装配）、constructor（构造函数自动装配）和autodetect（自动检测）。
+* lazyInit：是否延迟初始化。
+* dependsOn：Bean的依赖关系。
+* initMethod：Bean的初始化方法。
+* destroyMethod：Bean的销毁方法。
+
+其他属性包括：
+* factoryBeanName：如果Bean是由工厂Bean创建的，则该属性指定工厂Bean的名称。
+* factoryMethodName：如果Bean是由工厂方法创建的，则该属性指定工厂方法的名称。
+* parentBeanName：如果Bean是另一个Bean的子Bean，则该属性指定父Bean的名称。
+* synthetic：如果Bean是Spring容器自动创建的，则该属性设置为true。
+* primary：如果Bean是多个同类型Bean中的首选Bean，则该属性设置为true。
+
+`BeanDefinition`可以通过`XML配置文件`、`Java注解`或者`Java代码`等方式进行定义。在Spring框架中，BeanDefinition是一个非常重要的概念，它为Spring容器提供了灵活的配置方式，使得开发者可以更加方便地管理Bean。
+
+1. XML配置文件
+
+``` xml
+<bean id="myBean" class="com.example.MyBean">
+  <property name="name" value="John Doe"/>
+  <property name="age" value="20"/>
+</bean>
+```
+
+2. Java注解
+
+``` java
+@Component
+public class MyBean {
+
+  @Value("John Doe")
+  private String name;
+
+  @Value("20")
+  private int age;
+
+}
+```
+
+3. Java代码
+
+``` java
+BeanDefinition beanDefinition = new BeanDefinition();
+beanDefinition.setBeanClassName("com.example.MyBean");
+beanDefinition.setScope("singleton");
+beanDefinition.setLazyInit(false);
+
+MutablePropertyValues propertyValues = new MutablePropertyValues();
+propertyValues.addPropertyValue("name", "John Doe");
+propertyValues.addPropertyValue("age", 20);
+beanDefinition.setPropertyValues(propertyValues);
+```
+
 
 ### Bean的三种获取方式
 ``` java
@@ -115,27 +177,34 @@ public class Test {
         // 通过ID加ClassType获取Bean
         TestService testService2 = applicationContext.getBean("testService",TestService.class);
         System.out.println(testService2.hashCode());
-        System.out.println(testService1.sayHello("by name and type"));
+        System.out.println(testService2.sayHello("by name and type"));
         // 通过ClassType获取Bean
         TestService testService3 = applicationContext.getBean(TestService.class);
         System.out.println(testService3.hashCode());
-        System.out.println(testService1.sayHello("by type"));
+        System.out.println(testService3.sayHello("by type"));
+        // 通过类型和工程方法获取Bean
+        TestService testService4 = applicationContext.getBean(TestService.class, "create");
+        System.out.println(testService4.hashCode());
+        System.out.println(testService4.sayHello("by type and factoryMethod"));
     }
 }
 
 /**
  * 打印：
  * 1773283386
- * hello by name
+ * get bean by name
  * 1773283386
- * hello by name and type
+ * get bean by name and type
  * 1773283386
- * hello by type
+ * get bean by type
+ * 1773283386
+ * get bean by type and factoryMethod
  */
 ```
 !> 1. 通过`name`获取`Bean`，对应注解`@Resource`(先按`name`匹配，如果没有则按`type`匹配)。<br/>
 2. 通过`type`获取`Bean`，对应`SpringBoot`中的注解`@Autowire`。<br/>
 3. 通过`name`加`type`获取`Bean`，对应`SpringBoot`中的注解`@Autowire`加上`@Qualifier`，或者`@Resource`。
+4. 通过`type`加`factoryMethod`获取`Bean`，工厂方法创建bean。
 
 ### 依赖注入
 * setter和constructor方式注入
