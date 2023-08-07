@@ -206,7 +206,7 @@ public class Test {
 3. 通过`name`加`type`获取`Bean`，对应`SpringBoot`中的注解`@Autowire`加上`@Qualifier`，或者`@Resource`。
 4. 通过`type`加`factoryMethod`获取`Bean`，工厂方法创建bean。
 
-### 依赖注入
+### 依赖注入（DI）
 工程代码：https://github.com/mg0324/java-code/tree/main/spring-demo/spring-di
 * 基于setter方法注入
 ``` java
