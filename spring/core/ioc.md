@@ -209,6 +209,7 @@ public class Test {
 ### 依赖注入（DI）
 工程代码：https://github.com/mg0324/java-code/tree/main/spring-demo/spring-di
 * 基于setter方法注入
+
 ``` java
 /**
  * 学生类
@@ -225,7 +226,9 @@ public class Student {
     private Teacher teacher;
 }
 ```
+
 xml配置:
+
 ``` xml
 <bean id = "simpleDateFormat" class = "java.text.SimpleDateFormat" >
     <constructor-arg value = "yyyy-MM-dd" ></constructor-arg>
@@ -247,7 +250,9 @@ xml配置:
     <constructor-arg value="1"></constructor-arg>
 </bean>
 ```
+
 * 基于constructor方法注入
+
 ``` java
 /**
  * 老师类
@@ -263,6 +268,7 @@ public class Teacher {
 }
 ```
 老师类不提供`setter`方法，提供全参数的构造方法，通过`constructor-arg`传入构造参数。
+
 * 简单类型注入
 * 复杂类型（对象、List、Map）注入
 * p命名空间
