@@ -153,7 +153,7 @@ beanDefinition.setPropertyValues(propertyValues);
 ```
 
 
-### Bean的三种获取方式
+### Bean的四种获取方式
 ``` java
 package com.mango.bean;
 
@@ -162,7 +162,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * bean的三种获取方式
+ * bean的四种获取方式
  *
  * @author mango
  * @since 2023/07/04
@@ -207,7 +207,62 @@ public class Test {
 4. 通过`type`加`factoryMethod`获取`Bean`，工厂方法创建bean。
 
 ### 依赖注入
-* setter和constructor方式注入
+工程代码：https://github.com/mg0324/java-code/tree/main/spring-demo/spring-di
+* 基于setter方法注入
+``` java
+/**
+ * 学生类
+ *
+ * @author mango
+ * @since 2023/8/7
+ */
+@Data
+@ToString
+public class Student {
+    private String name;
+    private int age;
+    private Date birthday;
+    private Teacher teacher;
+}
+```
+xml配置:
+``` xml
+<bean id = "simpleDateFormat" class = "java.text.SimpleDateFormat" >
+    <constructor-arg value = "yyyy-MM-dd" ></constructor-arg>
+</bean>
+<!-- 基于setter方法注入 -->
+<bean id="student" class="com.mango.di.Student">
+    <property name="name" value="小刚"></property>
+    <property name="age" value="20"></property>
+    <property name="birthday">
+        <bean factory-bean="simpleDateFormat" factory-method="parse">
+            <constructor-arg value="1993-03-01"></constructor-arg>
+        </bean>
+    </property>
+    <property name="teacher" ref="teacher"></property>
+</bean>
+<!-- 基于构造器注入 -->
+<bean id="teacher" class="com.mango.di.Teacher">
+    <constructor-arg value="王老师"></constructor-arg>
+    <constructor-arg value="1"></constructor-arg>
+</bean>
+```
+* 基于constructor方法注入
+``` java
+/**
+ * 老师类
+ *
+ * @author mango
+ * @since 2023/8/7
+ */
+@AllArgsConstructor
+@ToString
+public class Teacher {
+    private String name;
+    private int sex;
+}
+```
+老师类不提供`setter`方法，提供全参数的构造方法，通过`constructor-arg`传入构造参数。
 * 简单类型注入
 * 复杂类型（对象、List、Map）注入
 * p命名空间
